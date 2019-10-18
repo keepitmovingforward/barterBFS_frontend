@@ -10,7 +10,8 @@ class App extends Component {
     super()
 
     this.state={
-      users: []
+      users: [],
+      currentUser: null
     }
   }
 
@@ -19,7 +20,8 @@ class App extends Component {
     .then(resp => resp.json())
     .then(usersArray =>
       this.setState({
-        users: usersArray
+        users: usersArray,
+        currentUser: usersArray[0]
       })
     )
   }
@@ -41,7 +43,7 @@ class App extends Component {
         <div>
           <NavBar />
             <Route exact path="/" render={() =>
-                <ItemContainer items={this.extractItems()} users={this.state.users}/>
+                <ItemContainer items={this.extractItems()} users={this.state.users} currentUser={this.state.currentUser}/>
               } />
         </div>
       </Router>

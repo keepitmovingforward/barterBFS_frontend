@@ -37,19 +37,3 @@ class NavBar extends Component {
 }
 
 export default NavBar;
-
-
-//
-//   <NavLink
-//     style={{ textAlign: 'right', border: '1px solid black', margin: '2px', padding: '5px' }}
-//     to="/"
-//   >
-//     Home
-//   </NavLink>
-//   <NavLink
-//     style={{ textAlign: 'right', border: '1px solid black', margin: '2px', padding: '5px' }}
-//     to="/barters"
-//   >
-//     My Barters
-//   </NavLink>
-//       </div>

@@ -8,7 +8,7 @@ const ItemCard = (props) => {
       <Card>
         <Image src={props.item.image_url} verticalAlign='middle' centered id="itemPhoto" />
         <Card.Content>
-          <Card.Header>{props.item.name} by {props.users.find( user => user.id === props.item.user_id).name}</Card.Header>
+          <Card.Header>{props.item.name} by {props.users.find( user => user.id === props.item.user_id).username}</Card.Header>
         </Card.Content>
       </Card>
 

@@ -23,8 +23,29 @@
 
 
 #itemPhoto {
-  max-height: 250px;
+  max-height: 220px;
   margin: 10px auto 10px auto;
+}
+
+#myItemPhotos {
+  max-height: 75px;
+  margin: 2px auto 2px auto;
+}
+
+#myItemText {
+  font-size: 13px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#userBoxCards {
+  max-height: 150px;
+}
+
+#userItemDescription {
+  padding: 5px;
+  overflow: hidden;
+  height: 45px;
 }
 
 .appName {
