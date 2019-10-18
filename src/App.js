@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
+import NavBar from './components/NavBar'
+import ItemContainer from './components/ItemContainer'
 
-function App() {
+class App extends Component {
+
+  constructor() {
+    super()
+
+    this.state={
+      users: []
+    }
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:4000/users")
+    .then(resp => resp.json())
+    .then(usersArray =>
+      this.setState({
+        users: usersArray
+      })
+    )
+  }
+
+  extractItems = () => {
+    if(this.state.users.length === 0) {
+      return this.state.users
+    }
+    else {
+      let itemsArray = this.state.users.map(user => user.items)
+      return itemsArray.flat()
+    }
+  }
+
+
+  render() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <Router>
+        <div>
+          <NavBar />
+            <Route exact path="/" render={() =>
+                <ItemContainer items={this.extractItems()} users={this.state.users}/>
+              } />
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;

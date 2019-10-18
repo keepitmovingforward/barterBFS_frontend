@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -19,4 +19,18 @@
 
 .App-link {
   color: #09d3ac;
+} */
+
+
+#itemPhoto {
+  max-height: 250px;
+  margin: 10px auto 10px auto;
+}
+
+.appName {
+  text-align: center;
+}
+
+#logo {
+  max-width: 1200px
 }
