@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar'
-import ItemContainer from './components/ItemContainer'
+import MainPage from './components/MainPage'
 
 class App extends Component {
 
@@ -11,7 +11,8 @@ class App extends Component {
 
     this.state={
       users: [],
-      currentUser: null
+      currentUser: null,
+      selectedItemOwner: null
     }
   }
 
@@ -36,6 +37,18 @@ class App extends Component {
     }
   }
 
+  updateSelectedItem = (user) => {
+    this.setState({
+      selectedItemOwner: user
+    })
+  }
+
+  removeSelectedItem = () => {
+    this.setState({
+      selectedItemOwner: null
+    })
+  }
+
 
   render() {
   return (
@@ -43,7 +56,13 @@ class App extends Component {
         <div>
           <NavBar />
             <Route exact path="/" render={() =>
-                <ItemContainer items={this.extractItems()} users={this.state.users} currentUser={this.state.currentUser}/>
+                <MainPage items={this.extractItems()}
+                  users={this.state.users}
+                  currentUser={this.state.currentUser}
+                  updateSelectedItem={this.updateSelectedItem}
+                  selectedItemOwner={this.state.selectedItemOwner}
+                  removeSelectedItem={this.removeSelectedItem}
+                  />
               } />
         </div>
       </Router>

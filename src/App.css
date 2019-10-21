@@ -21,6 +21,18 @@
   color: #09d3ac;
 } */
 
+#myUserPhoto {
+  max-height: 250px;
+}
+
+#userDetailPhoto {
+  max-height: 225px;
+  margin: 10px auto 20px auto;
+}
+
+#userDetailButtons {
+  text-align: center;
+}
 
 #itemPhoto {
   max-height: 220px;
@@ -32,6 +44,11 @@
   margin: 2px auto 2px auto;
 }
 
+#userDetailItemPhotos {
+  max-height: 150px;
+  margin: 2px auto 2px auto;
+}
+
 #myItemText {
   font-size: 13px;
   text-align: center;
@@ -40,6 +57,10 @@
 
 #userBoxCards {
   max-height: 150px;
+}
+
+#userDetailBoxCards {
+  max-height: 200px;
 }
 
 #userItemDescription {

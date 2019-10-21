@@ -1,40 +1,30 @@
 import React, { Component } from 'react';
-import { Grid, Card } from 'semantic-ui-react'
+import { Image, Grid, Card } from 'semantic-ui-react'
 import ItemCard from './ItemCard'
-import UserBox from './UserBox'
+import UserDetailBox from './UserDetailBox'
 
 class ItemContainer extends Component {
 
   render() {
 
     return(
-      this.props.currentUser ?
-      <Grid celled>
-        <Grid.Row>
-            <Grid.Column width={12}>
-              <Card.Group itemsPerRow={4}>
-              {this.props.items.filter(itemObj => itemObj.user_id !== this.props.currentUser.id).map(itemObj =>
-                <ItemCard item={itemObj} key={itemObj.id} users={this.props.users}/>)
-              }
-              </Card.Group>
-            </Grid.Column>
-            <Grid.Column width={4}>
-            <UserBox user={this.props.currentUser}/>
-            </Grid.Column>
-        </Grid.Row>
-      </Grid>
+      this.props.selectedItemOwner===null ?
+      <Card.Group itemsPerRow={this.props.itemsPerRow}>
+        <ItemCard items={this.props.items}
+          users={this.props.users}
+          updateSelectedItem={this.props.updateSelectedItem}
+          selectedItemOwner={this.props.selectedItemOwner}
+          />
+      </Card.Group>
       :
-      <Grid celled>
-        <Grid.Row>
-            <Grid.Column width={16}>
-              <Card.Group itemsPerRow={6}>
-              {this.props.items.map(itemObj =>
-                <ItemCard item={itemObj} key={itemObj.id} users={this.props.users}/>)
-              }
-              </Card.Group>
-            </Grid.Column>
-        </Grid.Row>
-      </Grid>
+      <>
+      <Grid.Column width={12}>
+      <UserDetailBox user={this.props.selectedItemOwner}
+        removeSelectedItem={this.props.removeSelectedItem}
+        itemsPerRow={5}
+        />
+      </Grid.Column>
+      </>
     )
   }
 
@@ -43,3 +33,12 @@ class ItemContainer extends Component {
 export default ItemContainer
 
   // <ProfileBox users={this.props.users} />
+
+  // {this.props.items.filter(itemObj => itemObj.user_id === this.props.selectedItemOwner.id).map(itemObj =>
+  //   <Card onClick={() => this.props.updateSelectedItem(this.props.users.find( user => user.id === itemObj.user_id))}
+  //     key={itemObj.id}>
+  //     <Image src={itemObj.image_url} verticalAlign='middle' centered id="itemPhoto" />
+  //     <Card.Content>
+  //       <Card.Header>{itemObj.name} by {this.props.users.find( user => user.id === itemObj.user_id).username}</Card.Header>
+  //     </Card.Content>
+  //   </Card>)

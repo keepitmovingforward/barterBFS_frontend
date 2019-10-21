@@ -3,7 +3,6 @@ import { Card, Image } from 'semantic-ui-react'
 import UserBoxItems from './UserBoxItems'
 
 const UserBox = (props) => {
-  console.log(props)
 
   return (
     props.user ?
@@ -17,13 +16,19 @@ const UserBox = (props) => {
          <span className='date'>Name: {props.user.name}</span>
          </Card.Meta>
          <Card.Description>
-         <Image src={props.user.prof_pic} verticalAlign='middle' centered id="userPhoto" />
+         <Image src={props.user.prof_pic} verticalAlign='middle' centered id="myUserPhoto" />
          </Card.Description>
        </Card.Content>
        <Card.Content extra>
-         <Card.Group itemsPerRow={3}>
+         <Card.Group itemsPerRow={props.itemsPerRow}>
          {props.user.items.map(itemObj =>
-           <UserBoxItems item={itemObj} key={itemObj.id} users={props.user}/>)
+           <UserBoxItems
+             item={itemObj}
+             key={itemObj.id}
+             users={props.user}
+             photoClass={"myItemPhotos"}
+             cardClass={"userBoxCards"}
+          />)
          }
          </Card.Group>
         </Card.Content>
@@ -35,5 +40,3 @@ const UserBox = (props) => {
 
 
 export default UserBox
-
-//
