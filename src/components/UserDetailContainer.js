@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react'
-import ItemContainer from './ItemContainer'
+import UserDetailBox from './UserDetailBox'
 import UserBox from './UserBox'
 
-export default class MainPage extends Component {
+export default class UserDetailContainer extends Component {
 
   render() {
     return(
@@ -11,11 +11,11 @@ export default class MainPage extends Component {
       <Grid celled>
         <Grid.Row>
             <Grid.Column width={12}>
-                <ItemContainer items={this.props.items.filter(itemObj => itemObj.user_id !== this.props.currentUser.id)}
-                  users={this.props.users}
-                  currentUser={this.props.currentUser}
-                  itemsPerRow={4}
-                  />
+              <UserDetailBox user={this.props.selectedItemOwner}
+                removeSelectedItem={this.props.removeSelectedItem}
+                currentUser={this.props.currentUser}
+                itemsPerRow={5}
+                />
             </Grid.Column>
             <Grid.Column width={4}>
             <UserBox user={this.props.currentUser}
@@ -28,11 +28,11 @@ export default class MainPage extends Component {
       <Grid celled>
         <Grid.Row>
             <Grid.Column width={16}>
-                <ItemContainer items={this.props.items}
-                  users={this.props.users}
-                  currentUser={this.props.currentUser}
-                  itemsPerRow={6}
-                  />
+            <UserDetailBox user={this.props.selectedItemOwner}
+              removeSelectedItem={this.props.removeSelectedItem}
+              currentUser={this.props.currentUser}
+              itemsPerRow={7}
+              />
             </Grid.Column>
         </Grid.Row>
       </Grid>

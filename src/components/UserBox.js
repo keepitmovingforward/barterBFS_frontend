@@ -18,6 +18,9 @@ const UserBox = (props) => {
          <Card.Description>
          <Image src={props.user.prof_pic} verticalAlign='middle' centered id="myUserPhoto" />
          </Card.Description>
+         <Card.Header>
+          <h2>My items</h2>
+          </Card.Header>
        </Card.Content>
        <Card.Content extra>
          <Card.Group itemsPerRow={props.itemsPerRow}>

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar'
 import MainPage from './components/MainPage'
+import UserDetailContainer from './components/UserDetailContainer'
+import LoginForm from './components/LoginForm'
 
 class App extends Component {
 
@@ -11,8 +13,7 @@ class App extends Component {
 
     this.state={
       users: [],
-      currentUser: null,
-      selectedItemOwner: null
+      currentUser: null
     }
   }
 
@@ -21,8 +22,7 @@ class App extends Component {
     .then(resp => resp.json())
     .then(usersArray =>
       this.setState({
-        users: usersArray,
-        currentUser: usersArray[0]
+        users: usersArray
       })
     )
   }
@@ -37,33 +37,70 @@ class App extends Component {
     }
   }
 
-  updateSelectedItem = (user) => {
+  logoutCurrentUser = () => {
     this.setState({
-      selectedItemOwner: user
+      currentUser: null
     })
   }
 
-  removeSelectedItem = () => {
+  loginUser = (user) => {
     this.setState({
-      selectedItemOwner: null
+      currentUser: user
     })
   }
+  // updateSelectedItem = (user) => {
+  //   this.setState({
+  //     selectedItemOwner: user
+  //   })
+  // }
+  //
+  // removeSelectedItem = () => {
+  //   this.setState({
+  //     selectedItemOwner: null
+  //   })
+  // }
 
 
   render() {
+    let { currentUser } = this.state
   return (
       <Router>
         <div>
-          <NavBar />
-            <Route exact path="/" render={() =>
-                <MainPage items={this.extractItems()}
-                  users={this.state.users}
-                  currentUser={this.state.currentUser}
-                  updateSelectedItem={this.updateSelectedItem}
-                  selectedItemOwner={this.state.selectedItemOwner}
-                  removeSelectedItem={this.removeSelectedItem}
+          <NavBar currentUser={this.state.currentUser}
+            logoutUser={this.logoutCurrentUser}
+            />
+            <Switch>
+              <Route path='/shops/:id' render={props => {
+                let userId = parseInt(props.match.params.id)
+                let foundUser = this.state.users.find(userObj => userObj.id === userId)
+                return (
+                  <UserDetailContainer
+                    selectedItemOwner={foundUser}
+                    items={this.extractItems().filter(itemObj => itemObj.user_id === userId)}
+                    currentUser={this.state.currentUser}
                   />
-              } />
+                )
+                }}
+                />
+
+              <Route exact path="/login" render={() => (
+                currentUser ?
+                <Redirect to='/home' />
+                :
+                  <LoginForm
+                    loginUser={this.loginUser}
+                    />
+                  )
+                } />
+
+              <Route exact path="/home" render={() =>
+                  <MainPage items={this.extractItems()}
+                    users={this.state.users}
+                    currentUser={this.state.currentUser}
+                    />
+                } />
+            </Switch>
+
         </div>
       </Router>
     );

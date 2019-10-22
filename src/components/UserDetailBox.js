@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Card, Image, Icon } from 'semantic-ui-react'
 import UserBoxItems from './UserBoxItems'
 
@@ -34,12 +35,18 @@ const UserDetailBox = (props) => {
         </Card.Content>
     </Card>
     <div id="userDetailButtons">
-    <Button animated onClick={props.removeSelectedItem}>
+    <Button animated as={Link} to={`/home`}>
       <Button.Content visible>Back to All Items</Button.Content>
       <Button.Content hidden>
         <Icon name='home' />
       </Button.Content>
     </Button>
+    <Button animated>
+        <Button.Content visible>Initiate Barter</Button.Content>
+        <Button.Content hidden>
+          <Icon name='handshake'/>
+        </Button.Content>
+      </Button>
     </div>
     </>
   )
