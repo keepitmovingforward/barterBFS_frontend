@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+import { Card, Image} from 'semantic-ui-react'
 import './App.css';
 import NavBar from './components/NavBar'
 import MainPage from './components/MainPage'
 import UserDetailContainer from './components/UserDetailContainer'
 import LoginForm from './components/LoginForm'
+import MyBarterContainer from './components/MyBarterContainer'
 
 class App extends Component {
 
@@ -13,7 +15,8 @@ class App extends Component {
 
     this.state={
       users: [],
-      currentUser: null
+      currentUser: null,
+      loading: true
     }
   }
 
@@ -22,7 +25,8 @@ class App extends Component {
     .then(resp => resp.json())
     .then(usersArray =>
       this.setState({
-        users: usersArray
+        users: usersArray,
+        loading: false
       })
     )
   }
@@ -48,6 +52,15 @@ class App extends Component {
       currentUser: user
     })
   }
+
+  acceptBarterUpdate = (userArray) => {
+    let id = this.state.currentUser.id
+
+    this.setState({
+      users: userArray,
+      currentUser: userArray.find(user => user.id === id)
+    })
+  }
   // updateSelectedItem = (user) => {
   //   this.setState({
   //     selectedItemOwner: user
@@ -69,28 +82,35 @@ class App extends Component {
           <NavBar currentUser={this.state.currentUser}
             logoutUser={this.logoutCurrentUser}
             />
+          {this.state.loading ?
+           null
+           :
             <Switch>
               <Route path='/shops/:id' render={props => {
                 let userId = parseInt(props.match.params.id)
                 let foundUser = this.state.users.find(userObj => userObj.id === userId)
-                return (
+                return (foundUser ?
                   <UserDetailContainer
                     selectedItemOwner={foundUser}
                     items={this.extractItems().filter(itemObj => itemObj.user_id === userId)}
                     currentUser={this.state.currentUser}
                   />
-                )
+                :
+                <Card fluid>
+                 <Image src={"https://i.imgur.com/vdU2Jlg.png"} verticalAlign='middle' centered />
+                </Card>
+                 )
                 }}
                 />
 
-              <Route exact path="/login" render={() => (
-                currentUser ?
+              <Route exact path="/login" render={() => {
+                return (currentUser ?
                 <Redirect to='/home' />
                 :
                   <LoginForm
                     loginUser={this.loginUser}
                     />
-                  )
+                )}
                 } />
 
               <Route exact path="/home" render={() =>
@@ -99,7 +119,19 @@ class App extends Component {
                     currentUser={this.state.currentUser}
                     />
                 } />
-            </Switch>
+
+              <Route exact path="/barters" render={() => {
+                return (currentUser ?
+                  <MyBarterContainer
+                    currentUser={this.state.currentUser}
+                    acceptBarterUpdate={this.acceptBarterUpdate}
+                    />
+                  :
+                  <Redirect to='/home' />
+                )}
+                } />
+
+            </Switch>}
 
         </div>
       </Router>

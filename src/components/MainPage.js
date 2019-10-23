@@ -14,7 +14,7 @@ export default class MainPage extends Component {
                 <ItemContainer items={this.props.items.filter(itemObj => itemObj.user_id !== this.props.currentUser.id)}
                   users={this.props.users}
                   currentUser={this.props.currentUser}
-                  itemsPerRow={4}
+                  itemsPerRow={5}
                   />
             </Grid.Column>
             <Grid.Column width={4}>

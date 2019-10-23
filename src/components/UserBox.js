@@ -28,7 +28,6 @@ const UserBox = (props) => {
            <UserBoxItems
              item={itemObj}
              key={itemObj.id}
-             users={props.user}
              photoClass={"myItemPhotos"}
              cardClass={"userBoxCards"}
           />)

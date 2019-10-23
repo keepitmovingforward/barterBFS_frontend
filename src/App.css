@@ -77,3 +77,20 @@
 #logo {
   max-width: 1200px
 }
+
+#sentBarters {
+  background-color: #D4DFEC;
+  margin: 3px auto 3px auto;
+  border-style: groove;
+}
+
+#recdBarters {
+  background-color: #ECCECF;
+  margin: 3px auto 3px auto;
+  border-style: groove;
+}
+
+#barterButtons {
+  text-align: right;
+  align-content: flex-end;
+}

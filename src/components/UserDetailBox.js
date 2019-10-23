@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Card, Image, Icon } from 'semantic-ui-react'
+import { Button, Card, Image, Icon, Dimmer, Loader, Segment } from 'semantic-ui-react'
 import UserBoxItems from './UserBoxItems'
 
 const UserDetailBox = (props) => {
 
   return (
+    <>
+    {props.user ?
     <>
     <Card fluid>
       <Card.Content>
@@ -49,8 +51,18 @@ const UserDetailBox = (props) => {
       </Button>
     </div>
     </>
+    :
+    <Segment>
+        <Dimmer active inverted>
+          <Loader size='large'>Loading</Loader>
+        </Dimmer>
+
+        <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' centered />
+    </Segment>
+
+  }
+  </>
   )
 }
-
 
 export default UserDetailBox
