@@ -21,6 +21,14 @@
   color: #09d3ac;
 } */
 
+#mainPage {
+  background-color: #BCCCE2;
+}
+
+#barterPage {
+  background-color: #BCCCE2;
+}
+
 #myUserPhoto {
   max-height: 250px;
     margin: 5px auto 15px auto;
@@ -33,6 +41,10 @@
 
 #userDetailButtons {
   text-align: center;
+}
+
+#userBox {
+  background-color: #D6E7EA;
 }
 
 #itemPhoto {
@@ -54,6 +66,12 @@
   font-size: 13px;
   text-align: center;
   vertical-align: middle;
+}
+
+#itemCardText {
+  text-align: center;
+  vertical-align: middle;
+  font-family: helvetica;
 }
 
 #userBoxCards {

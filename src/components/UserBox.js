@@ -6,7 +6,7 @@ const UserBox = (props) => {
 
   return (
     props.user ?
-    <Card fluid>
+    <Card color="teal" fluid id="userBox">
       <Card.Content>
         <Card.Header>
           <div><h1>My Profile</h1></div>

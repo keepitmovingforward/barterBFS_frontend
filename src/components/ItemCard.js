@@ -8,11 +8,11 @@ const ItemCard = (props) => {
 
     <>
     {props.items.map(itemObj =>
-      <Card as={Link} to={`/shops/${itemObj.user_id}`}
+      <Card color='blue' as={Link} to={`/shops/${itemObj.user_id}`}
         key={itemObj.id}>
-        <Image src={itemObj.image_url} verticalAlign='middle' centered id="itemPhoto" />
+        <Image src={itemObj.image_url} verticalAlign='middle' centered id="itemPhoto" bordered />
         <Card.Content>
-          <Card.Header>{itemObj.name} by {props.users.find( user => user.id === itemObj.user_id).username}</Card.Header>
+          <Card.Header id="itemCardText">{itemObj.name} by {props.users.find( user => user.id === itemObj.user_id).username}</Card.Header>
         </Card.Content>
       </Card>)
     }

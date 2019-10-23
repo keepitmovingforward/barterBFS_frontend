@@ -8,7 +8,7 @@ export default class MainPage extends Component {
   render() {
     return(
       this.props.currentUser ?
-      <Grid celled>
+      <Grid celled id="mainPage">
         <Grid.Row>
             <Grid.Column width={12}>
                 <ItemContainer items={this.props.items.filter(itemObj => itemObj.user_id !== this.props.currentUser.id)}
@@ -25,7 +25,7 @@ export default class MainPage extends Component {
         </Grid.Row>
       </Grid>
       :
-      <Grid celled>
+      <Grid celled id="mainPage">
         <Grid.Row>
             <Grid.Column width={16}>
                 <ItemContainer items={this.props.items}

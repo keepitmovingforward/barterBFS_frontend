@@ -6,7 +6,7 @@ const PendingBarters = (props) => {
 
 
   return (
-    <Card fluid>
+    <Card fluid id="barterPage">
       <Card.Content>
           <div><h1>Pending Barters for {props.user.username}</h1></div>
        </Card.Content>

@@ -63,7 +63,7 @@ export default class MyBarterContainer extends Component {
       {this.state.loading ?
        null
        :
-      <Grid celled>
+      <Grid celled id="barterPage">
         <Grid.Row>
             <Grid.Column width={12}>
               <PendingBarters
