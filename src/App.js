@@ -25,6 +25,7 @@ class App extends Component {
     .then(resp => resp.json())
     .then(usersArray =>
       this.setState({
+
         users: usersArray,
         loading: false
       })
