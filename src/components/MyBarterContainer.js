@@ -12,7 +12,7 @@ export default class MyBarterContainer extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:4000/barters")
+    fetch("https://barter-bfs-api.herokuapp.com/barters")
     .then(resp => resp.json())
     .then(bartersArray =>
       this.setState({
@@ -26,7 +26,7 @@ export default class MyBarterContainer extends Component {
     let barterId = barterObj.id
     let barterItems = barterObj.items
     //need to update barter status to accepted
-    fetch(`http://localhost:4000/barters/${barterId}`, {
+    fetch(`https://barter-bfs-api.herokuapp.com/barters/${barterId}`, {
       method: "PATCH",
       headers: {
        "Content-Type": "application/json",

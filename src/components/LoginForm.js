@@ -12,7 +12,7 @@ class LoginForm extends React.Component {
   };
 
   handleLoginSubmit = () => {
-    fetch("http://localhost:4000/login", {
+    fetch("https://barter-bfs-api.herokuapp.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

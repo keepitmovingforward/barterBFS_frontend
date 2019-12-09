@@ -21,7 +21,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:4000/users")
+    fetch("https://barter-bfs-api.herokuapp.com/users")
     .then(resp => resp.json())
     .then(usersArray =>
       this.setState({
